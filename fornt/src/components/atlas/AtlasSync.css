@@ -1,0 +1,51 @@
+.atlas-page { max-width: 1100px; margin: 24px auto; padding: 0 16px 24px; color: #12352c; }
+.atlas-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+.atlas-heading h1 { margin: 0 0 6px; font-size: 26px; }
+.atlas-heading p { color: #64748b; margin: 0; }
+.atlas-heading .atlas-eyebrow { color: #2c7159; text-transform: uppercase; font-size: 12px; letter-spacing: .06em; font-weight: 700; margin-bottom: 4px; }
+.atlas-text-link { white-space: nowrap; }
+.atlas-page a { color: #25634f; }
+.atlas-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.atlas-stat { border: 1px solid #dbe5e0; border-radius: 10px; background: #f5faf7; padding: 16px; display: flex; flex-direction: column; gap: 8px; overflow-wrap: anywhere; }
+.atlas-stat span { font-size: 12px; color: #587368; }
+.atlas-stat strong { font-size: 20px; }
+.atlas-stat strong.atlas-date { font-size: 14px; }
+.atlas-stat small { color: #64748b; font-size: 12px; }
+.atlas-card { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 22px; margin-bottom: 18px; }
+.atlas-card h2 { margin: 0 0 10px; font-size: 18px; }
+.atlas-card p { font-size: 14px; color: #64748b; line-height: 1.6; }
+.atlas-card label:not(.atlas-checkbox) { display: block; margin: 18px 0 7px; font-size: 14px; font-weight: 600; }
+.atlas-card input:not([type=checkbox]) { display: block; box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; background: #fff; }
+.atlas-card input:focus { outline: 2px solid #388565; outline-offset: 2px; }
+.atlas-card form > small { display: block; margin-top: 8px; color: #64748b; line-height: 1.5; }
+.atlas-checkbox { display: flex; align-items: center; gap: 9px; margin: 20px 0; font-size: 14px; }
+.atlas-checkbox input { width: 18px; height: 18px; accent-color: #2c7159; }
+.atlas-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.atlas-page button { padding: 10px 16px; border: 1px solid #cbd5e1; border-radius: 6px; color: #12352c; background: #fff; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; }
+.atlas-page button.atlas-primary { background: #2c7159; border-color: #2c7159; color: #fff; }
+.atlas-page button.atlas-danger { color: #a42626; border-color: #e9bcbc; }
+.atlas-page button:disabled { opacity: .55; cursor: default; }
+.atlas-page button:focus-visible { outline: 2px solid #388565; outline-offset: 3px; }
+.atlas-notice { padding: 12px 16px; border-radius: 7px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.atlas-notice-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.atlas-page .atlas-notice-error { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+.atlas-explanation { margin: 0; padding-left: 20px; color: #64748b; font-size: 14px; line-height: 1.7; }
+.atlas-explanation li + li { margin-top: 6px; }
+.atlas-conflicts { display: grid; gap: 16px; }
+.atlas-conflict { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+.atlas-conflict-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.atlas-conflict code { display: block; font-size: 12px; color: #64748b; margin-top: 6px; overflow-wrap: anywhere; }
+.atlas-versions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.atlas-versions > div { min-width: 0; }
+.atlas-versions h3 { font-size: 14px; }
+.atlas-versions pre { background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; max-height: 320px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; }
+.atlas-access summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.atlas-access button { margin-top: 12px; }
+@media (max-width: 850px) { .atlas-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) {
+  .atlas-page { margin-top: 16px; padding: 0 12px 20px; }
+  .atlas-card { padding: 16px; }
+  .atlas-heading, .atlas-conflict-heading { flex-direction: column; align-items: stretch; }
+  .atlas-status-grid, .atlas-versions { grid-template-columns: 1fr; }
+  .atlas-actions button { flex: 1 1 130px; }
+}

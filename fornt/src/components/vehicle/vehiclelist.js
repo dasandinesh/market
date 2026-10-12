@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { fetchJson } from '../../api';
+import { useListPagination } from '../../pagination';
+import Pagination from '../common/Pagination';
 import '../../components/cutomer/customerlist.css';
 
 const emptyVehicle = { name: '', ownerName: '', vehicleType: '' };
 
 const VehicleList = () => {
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -30,6 +34,7 @@ const VehicleList = () => {
   const filteredVehicles = vehicles.filter((vehicle) => Object.entries(filters).every(([field, filterValue]) => (
     String(vehicle[field] || '').toLowerCase().includes(filterValue.trim().toLowerCase())
   )));
+  const { pageItems, page, setPage } = useListPagination(filteredVehicles, JSON.stringify(filters));
 
   const updateFilter = (field, value) => setFilters((current) => ({ ...current, [field]: value }));
   const hasActiveFilters = Object.values(filters).some(Boolean);
@@ -84,9 +89,14 @@ const VehicleList = () => {
             <h1>Vehicles</h1>
             <p>View, update, or remove vehicle records.</p>
           </div>
-          <button className="refresh-button" type="button" onClick={loadVehicles} disabled={loading}>
-            {loading ? 'Loading…' : 'Refresh'}
-          </button>
+          <div className="customer-list-header-actions">
+            <button className="refresh-button" type="button" onClick={() => navigate('/vehicles')}>
+              Add vehicle
+            </button>
+            <button className="refresh-button" type="button" onClick={loadVehicles} disabled={loading}>
+              {loading ? 'Loading…' : 'Refresh'}
+            </button>
+          </div>
         </header>
 
         {message.text && <p className={`customer-message ${message.type}`} role="alert">{message.text}</p>}
@@ -108,7 +118,7 @@ const VehicleList = () => {
                 <tr><td colSpan="4" className="customer-table-state">Loading vehicles…</td></tr>
               ) : filteredVehicles.length === 0 ? (
                 <tr><td colSpan="4" className="customer-table-state">{vehicles.length === 0 ? 'No vehicles found.' : 'No vehicles match this filter.'}</td></tr>
-              ) : filteredVehicles.map((vehicle) => (
+              ) : pageItems.map((vehicle) => (
                 <tr key={vehicle._id}>
                   <td className="customer-name">{vehicle.name}</td>
                   <td>{vehicle.ownerName || '—'}</td>
@@ -122,6 +132,7 @@ const VehicleList = () => {
             </tbody>
           </table>
         </div>
+        <Pagination page={page} total={filteredVehicles.length} onPageChange={setPage} loading={loading} itemLabel="vehicles" />
       </section>
 
       {editingVehicle && (

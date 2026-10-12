@@ -17,15 +17,12 @@ const NAV_LINKS = [
 ];
 
 const MASTER_LINKS = [
-  { to: '/customers', label: 'Customer Add', icon: 'add' },
-  { to: '/customer-list', label: 'Customer List', icon: 'users' },
-  { to: '/products', label: 'Product Add', icon: 'add' },
-  { to: '/product-list', label: 'Product List', icon: 'box' },
-  { to: '/drivers', label: 'Driver Add', icon: 'add' },
-  { to: '/driver-list', label: 'Driver List', icon: 'users' },
-  { to: '/vehicles', label: 'Vehicle Add', icon: 'add' },
-  { to: '/vehicle-list', label: 'Vehicle List', icon: 'truck' },
+  { to: '/customer-list', label: 'Customer', icon: 'users' },
+  { to: '/product-list', label: 'Product', icon: 'box' },
+  { to: '/driver-list', label: 'Driver', icon: 'users' },
+  { to: '/vehicle-list', label: 'Vehicle', icon: 'truck' },
   { to: '/invoice-setting', label: 'Invoice Setting', icon: 'gear' },
+  { to: '/atlas-sync', label: 'Atlas Sync', icon: 'cloud' },
 ];
 
 // Grouped into their own dropdown — with 10+ top-level links the two Price Update

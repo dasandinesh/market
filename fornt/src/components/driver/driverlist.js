@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { fetchJson } from '../../api';
+import { useListPagination } from '../../pagination';
+import Pagination from '../common/Pagination';
 import '../../components/cutomer/customerlist.css';
 
 const emptyDriver = { name: '', phone: '', area: '' };
 
 const DriverList = () => {
+  const navigate = useNavigate();
   const [drivers, setDrivers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -30,6 +34,7 @@ const DriverList = () => {
   const filteredDrivers = drivers.filter((driver) => Object.entries(filters).every(([field, filterValue]) => (
     String(driver[field] || '').toLowerCase().includes(filterValue.trim().toLowerCase())
   )));
+  const { pageItems, page, setPage } = useListPagination(filteredDrivers, JSON.stringify(filters));
 
   const updateFilter = (field, value) => setFilters((current) => ({ ...current, [field]: value }));
   const hasActiveFilters = Object.values(filters).some(Boolean);
@@ -84,9 +89,14 @@ const DriverList = () => {
             <h1>Drivers</h1>
             <p>View, update, or remove driver records.</p>
           </div>
-          <button className="refresh-button" type="button" onClick={loadDrivers} disabled={loading}>
-            {loading ? 'Loading…' : 'Refresh'}
-          </button>
+          <div className="customer-list-header-actions">
+            <button className="refresh-button" type="button" onClick={() => navigate('/drivers')}>
+              Add driver
+            </button>
+            <button className="refresh-button" type="button" onClick={loadDrivers} disabled={loading}>
+              {loading ? 'Loading…' : 'Refresh'}
+            </button>
+          </div>
         </header>
 
         {message.text && <p className={`customer-message ${message.type}`} role="alert">{message.text}</p>}
@@ -107,7 +117,7 @@ const DriverList = () => {
                 <tr><td colSpan="4" className="customer-table-state">Loading drivers…</td></tr>
               ) : filteredDrivers.length === 0 ? (
                 <tr><td colSpan="4" className="customer-table-state">{drivers.length === 0 ? 'No drivers found.' : 'No drivers match this filter.'}</td></tr>
-              ) : filteredDrivers.map((driver) => (
+              ) : pageItems.map((driver) => (
                 <tr key={driver._id}>
                   <td className="customer-name">{driver.name}</td>
                   <td>{driver.phone || '—'}</td>
@@ -121,6 +131,7 @@ const DriverList = () => {
             </tbody>
           </table>
         </div>
+        <Pagination page={page} total={filteredDrivers.length} onPageChange={setPage} loading={loading} itemLabel="drivers" />
       </section>
 
       {editingDriver && (

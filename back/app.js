@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const custumerrouter = require('./routers/customerrouters'); 
 const productrouter = require('./routers/productroutes');
+const unitrouter = require('./routers/unitroutes');
 const orderrouter = require('./routers/orderroutes');
 const salerouter = require('./routers/saleroutes');
 const invoicesettingrouter = require('./routers/invoicesettingroutes');
@@ -17,6 +18,7 @@ const ledgerrouter = require('./routers/ledgerroutes');
 const backuprouter = require('./routers/backuproutes');
 const driverrouter = require('./routers/driverroutes');
 const vehiclerouter = require('./routers/vehicleroutes');
+const atlasSyncRouter = require('./atlas-sync/routes');
 
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, 'config/config.env') });
@@ -35,6 +37,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/customers', custumerrouter);
 app.use('/api/products', productrouter);
+app.use('/api/units', unitrouter);
 app.use('/api/orders', orderrouter);
 app.use('/api/sales', salerouter);
 app.use('/api/invoice-settings', invoicesettingrouter);
@@ -43,6 +46,7 @@ app.use('/api/ledger', ledgerrouter);
 app.use('/api/backup', backuprouter);
 app.use('/api/drivers', driverrouter);
 app.use('/api/vehicles', vehiclerouter);
+app.use('/api/atlas-sync', atlasSyncRouter());
 
 // Health check for the dashboard's three status lights: this endpoint answering at
 // all means the backend is up; its `db` field says whether Mongo is connected.

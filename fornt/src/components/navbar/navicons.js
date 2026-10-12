@@ -1,6 +1,12 @@
 // Minimal, dependency-free stroke icons for the main nav (Feather-style, hand-drawn
 // paths). Rendered with currentColor so they follow the link's text color/state.
 const SHAPES = {
+  cloud: (
+    <>
+      <path d="M7 18H6a4 4 0 0 1-.5-8A6 6 0 0 1 17 8a5 5 0 0 1 1 10h-1" />
+      <path d="M9 15l3-3 3 3M12 12v9" />
+    </>
+  ),
   dashboard: (
     <>
       <rect x="3" y="3" width="7.5" height="7.5" rx="1.6" />

@@ -2,15 +2,36 @@
   text-align: center;
 }
 
-/* Sticky footer: footer stays pinned to the bottom of the viewport even on
-   pages whose content doesn't fill the screen. */
+/* Every page uses the space between the natural-height header and footer. */
 .app-shell {
+  height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 .app-content {
-  flex: 1 0 auto;
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+.app-shell > .mainnav,
+.app-shell > .mainfooter {
+  flex-shrink: 0;
+}
+
+/* Small or short viewports scroll naturally so every control remains reachable. */
+@media (max-width: 1000px), (max-height: 620px) {
+  .app-shell {
+    height: auto;
+  }
+  .app-content {
+    flex: 1 0 auto;
+    overflow: visible;
+  }
 }
 
 .App-logo {

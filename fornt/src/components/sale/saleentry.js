@@ -832,7 +832,7 @@ const SaleEntry = () => {
 
                         </div>
                     </div>
-                    <div className="sale-table-wrapper" style={{ height: "200px", overflow: "auto" }}>
+                    <div className="sale-table-wrapper">
                         <table className="sale-product-table">
                             <thead>
                                 <tr>
@@ -1021,7 +1021,7 @@ const SaleEntry = () => {
                         <div className="sale-summary-buttons sale-bill-actions">
                             <button type="submit">{editingId ? 'Update' : 'Submit'}</button>
                             <button type="button" onClick={handleNewSale}>New</button>
-                            <button type="submit">Save</button>
+                            {/* <button type="submit">Save</button> */}
                             <button
                                 type="button"
                                 onClick={() => handlePrintBill(lastSavedBill)}
@@ -1036,9 +1036,9 @@ const SaleEntry = () => {
                     {saveStatus && <p role="alert">{saveStatus}</p>}
                 </form>
             </div>
-            <div style={{ flex: 3, display: "flex", flexDirection: "column",  }}>
+            <div className="sale-entry-sidebar">
             <div className="sale-entry-summary">
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="sale-summary-filters">
                     <div>
                         <input
                             type="date"
@@ -1116,7 +1116,7 @@ const SaleEntry = () => {
                 <hr></hr>
             {/* Order (purchase) bill list — same layout/behaviour as the sale list above, wired to /api/orders. */}
             <div className="sale-entry-summary">
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="sale-summary-filters">
                     <div>
                         <input
                             type="date"

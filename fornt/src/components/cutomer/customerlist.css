@@ -1,6 +1,7 @@
 .customer-list-page { min-height: 100vh; box-sizing: border-box; padding: 40px 20px; color: #19302a; }
 .customer-list-card { max-width: 1180px; margin: 0 auto; padding: 32px; background: #fff; border-radius: 16px; box-shadow: 0 12px 30px rgba(28, 63, 52, .12); }
 .customer-list-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid #dce8e4; }
+.customer-list-header-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .customer-list-header h1 { margin: 4px 0 8px; font-size: 28px; }.customer-list-header p { margin: 0; color: #5e706a; }
 .customer-list-eyebrow { color: #237553 !important; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .refresh-button, .customer-actions button, .modal-actions button { padding: 9px 13px; font: inherit; font-weight: 700; border-radius: 7px; cursor: pointer; }

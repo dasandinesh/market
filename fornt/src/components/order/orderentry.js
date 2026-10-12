@@ -623,7 +623,7 @@ const OrderEntry = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="table-wrapper" style={{ height: "200px", overflow: "auto" }}>
+                    <div className="table-wrapper">
                         <table className="product-table">
                             <thead>
                                 <tr>
@@ -739,7 +739,7 @@ const OrderEntry = () => {
                 </form>
             </div>
             <div className="order-entry-summary">
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="order-summary-filters">
                     <div>
                         <input
                             type="date"

@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { fetchJson } from '../../api';
+import { useListPagination } from '../../pagination';
+import Pagination from '../common/Pagination';
 import './customerlist.css';
 
 const emptyCustomer = {
@@ -34,6 +36,7 @@ const CustomerList = () => {
   const filteredCustomers = customers.filter((customer) => Object.entries(filters).every(([field, filterValue]) => (
     String(customer[field] || '').toLowerCase().includes(filterValue.trim().toLowerCase())
   )));
+  const { pageItems, page, setPage } = useListPagination(filteredCustomers, JSON.stringify(filters));
 
   const updateFilter = (field, value) => setFilters((current) => ({ ...current, [field]: value }));
   const hasActiveFilters = Object.values(filters).some(Boolean);
@@ -88,9 +91,14 @@ const CustomerList = () => {
             <h1>Customers</h1>
             <p>View, update, or remove customer records.</p>
           </div>
-          <button className="refresh-button" type="button" onClick={loadCustomers} disabled={loading}>
-            {loading ? 'Loading…' : 'Refresh'}
-          </button>
+          <div className="customer-list-header-actions">
+            <button className="refresh-button" type="button" onClick={() => navigate('/customers')}>
+              Add customer
+            </button>
+            <button className="refresh-button" type="button" onClick={loadCustomers} disabled={loading}>
+              {loading ? 'Loading…' : 'Refresh'}
+            </button>
+          </div>
         </header>
 
         {message.text && <p className={`customer-message ${message.type}`} role="alert">{message.text}</p>}
@@ -112,7 +120,7 @@ const CustomerList = () => {
                 <tr><td colSpan="5" className="customer-table-state">Loading customers…</td></tr>
               ) : filteredCustomers.length === 0 ? (
                 <tr><td colSpan="5" className="customer-table-state">{customers.length === 0 ? 'No customers found.' : 'No customers match this filter.'}</td></tr>
-              ) : filteredCustomers.map((customer) => {
+              ) : pageItems.map((customer) => {
                 const address = [customer.door, customer.street, customer.area, customer.district, customer.state, customer.pincode].filter(Boolean).join(', ');
                 return (
                   <tr key={customer._id}>
@@ -131,6 +139,7 @@ const CustomerList = () => {
             </tbody>
           </table>
         </div>
+        <Pagination page={page} total={filteredCustomers.length} onPageChange={setPage} loading={loading} itemLabel="customers" />
       </section>
 
       {editingCustomer && (

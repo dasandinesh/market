@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import OrderEntryResponsive from './components/order/orderentryresponsive';
 import OrderEntryMobile from './components/order/ordermobile';
 import SaleEntry from './components/sale/saleentry';
@@ -23,6 +23,8 @@ import DriverAdd from './components/driver/driveradd';
 import DriverList from './components/driver/driverlist';
 import VehicleAdd from './components/vehicle/vehicleadd';
 import VehicleList from './components/vehicle/vehiclelist';
+import AtlasSync from './components/atlas/AtlasSync';
+import './responsive.css';
 
 // Select an input's value when it gets focus, so typing replaces it without Backspace.
 // One document-level listener covers every page and every input.
@@ -30,6 +32,22 @@ const selectOnFocus = (e) => {
   const el = e.target;
   if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'number')) el.select();
 };
+
+function AppLayout({ children }) {
+  const { pathname } = useLocation();
+  const contentRef = useRef(null);
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+  return (
+    <div className="app-shell">
+      <MainNav />
+      <main className="app-content" ref={contentRef}>{children}</main>
+      <MainFooter />
+    </div>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -39,9 +57,7 @@ function App() {
 
   return (
     <Router>
-      <div className="app-shell">
-        <MainNav />
-        <main className="app-content">
+      <AppLayout>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/order-entry" element={<OrderEntryResponsive />} />
@@ -63,10 +79,9 @@ function App() {
             <Route path="/invoice-setting" element={<InvoiceSetting />} />
             <Route path="/receipts" element={<ReceiptEntry />} />
             <Route path="/customer-ledger" element={<CustomerLedger />} />
+            <Route path="/atlas-sync" element={<AtlasSync />} />
           </Routes>
-        </main>
-        <MainFooter />
-      </div>
+      </AppLayout>
     </Router>
   );
 }

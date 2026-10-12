@@ -6,26 +6,174 @@
   font-weight: 600;
 }
 
-.sale-bill-list-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 14px;
-  font-size: 13px;
-  color: #475569;
+.app-content .customer-list-page.sale-bill-list-page,
+.sale-bill-list-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  align-items: stretch;
+  gap: 16px;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
 }
-.sale-bill-list-pagination-buttons {
+
+.app-content .sale-bill-list-page > .customer-list-card,
+.sale-bill-list-page > .customer-list-card {
   display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+}
+
+.sale-bill-list-page .customer-list-header h2,
+.sale-bill-preview-heading h2 {
+  margin: 0;
+}
+
+.sale-bill-selected td {
+  background: #edf7f1;
+}
+
+.sale-bill-row-actions,
+.sale-bill-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
-.sale-bill-list-pagination-buttons button {
-  padding: 6px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background: #fff;
+
+.sale-bill-row-actions button,
+.sale-bill-preview-actions button,
+.sale-bill-whatsapp-button {
+  padding: 8px 10px;
+  border: 1px solid #a9c9bc;
+  border-radius: 7px;
+  color: #1b5d44;
+  background: #edf7f1;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
 }
-.sale-bill-list-pagination-buttons button:disabled {
-  opacity: .5;
-  cursor: not-allowed;
+
+.sale-bill-row-actions button:focus-visible,
+.sale-bill-preview-actions button:focus-visible,
+.sale-bill-whatsapp-button:focus-visible {
+  outline: 2px solid #237553;
+  outline-offset: 2px;
 }
+
+.sale-bill-row-actions button:disabled,
+.sale-bill-preview-actions button:disabled,
+.sale-bill-whatsapp-button:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+.sale-bill-preview-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #dce8e4;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(28, 63, 52, .08);
+}
+
+.sale-bill-preview-heading {
+  flex-shrink: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dce8e4;
+}
+
+.sale-bill-preview-panel .sale-bill-preview-document {
+  padding: 8px;
+  font-size: 12px;
+}
+
+.sale-bill-preview-panel .sale-bill-preview-items {
+  min-width: 0;
+}
+
+.sale-bill-preview-panel .sale-bill-preview-items :is(th, td) {
+  padding: 6px 3px;
+}
+
+.sale-bill-preview-panel .sale-bill-preview-meta {
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.sale-bill-share {
+  display: grid;
+  flex-shrink: 0;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #dce8e4;
+}
+
+.sale-bill-share label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sale-bill-share input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 10px;
+  box-sizing: border-box;
+  border: 1px solid #b9ccc5;
+  border-radius: 7px;
+  font: inherit;
+}
+
+.sale-bill-share input:focus {
+  outline: 2px solid #237553;
+  outline-offset: 1px;
+}
+
+.sale-bill-whatsapp-button {
+  color: #fff;
+  background: #237553;
+  border-color: #237553;
+}
+
+.sale-bill-share p,
+.sale-bill-notice {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5e706a;
+}
+
+.sale-bill-preview-panel > .customer-message,
+.sale-bill-preview-panel > .sale-bill-notice {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+  .app-content .customer-list-page.sale-bill-list-page,
+  .sale-bill-list-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sale-bill-preview-panel {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 1100px), (max-height: 620px) {
+  .sale-bill-preview-panel .sale-bill-preview-document {
+    flex: none;
+    max-height: 55dvh;
+  }
+}
+

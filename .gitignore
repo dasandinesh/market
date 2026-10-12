@@ -12,6 +12,7 @@ coverage/
 *.key
 !*.env.example
 !.env.example
+.atlas-sync/
 
 # Logs and editor files
 *.log

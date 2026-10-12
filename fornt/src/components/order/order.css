@@ -93,8 +93,8 @@
 
 .product-input-grid {
   display: grid;
-  grid-template-columns: minmax(380px, 1fr) repeat(4, 120px) 100px 100px;
-  gap: 10px;
+  grid-template-columns: minmax(160px, 2fr) repeat(6, minmax(0, 1fr));
+  gap: 6px;
 }
 
 .product-input-field {
@@ -138,32 +138,72 @@
 .save-button:active { transform: translateY(1px); }
 
 .order-entry-container {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 23vw, 360px);
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  gap: 8px;
+  padding: 6px;
+  box-sizing: border-box;
 }
 
 .order-entry-form {
-  flex: 9;
-  margin-right: 20px;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  container: order-form / inline-size;
+}
+
+.order-entry-form > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.order-entry-form > form > :not(.table-wrapper) {
+  flex-shrink: 0;
+}
+
+.order-entry-form > form > p {
+  margin: 0;
+  font-size: 12px;
 }
 
 .order-entry-summary {
-  flex: 3;
-  margin-left: 4px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  gap: 6px;
+}
+
+.order-summary-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.order-summary-filters > div {
+  min-width: 0;
 }
 
 .product-table {
   width: 100%;
+  min-width: 740px;
   border-collapse: collapse;
 }
 
 .table-wrapper {
-  max-height: 800px;
-  min-height: 400px;
-  /* Set maximum height for the table wrapper */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 80px;
+  overflow: auto;
+  scrollbar-width: thin;
   background-color: #f9f9f9;
   /* Optional: Add a background color */
 
@@ -189,15 +229,19 @@
   width: 80px;
 }
 .table-wrapper th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #f2f2f2;
   /* Add background color to header cells */
 }
 
 .summary-content {
-  max-height: 400px;
-  min-height: 400px;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
   scrollbar-width: thin;
-  overflow-y: auto;
+  overflow: auto;
   /* Enable vertical scrolling */
 }
 
@@ -260,9 +304,58 @@
   border-radius: 6px;
 }
 
-@media (max-width: 700px) {
+/* Keep the table flexible while the entry controls wrap to the form width. */
+@container order-form (max-width: 900px) {
   .product-input-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .product-input-grid > :first-child {
+    grid-column: span 2;
+  }
+}
+
+@container order-form (max-width: 600px) {
+  .customer-bill-details,
+  .bill-total-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .customer-bill-details .order-customer-name-field {
+    grid-column: 1 / -1;
+  }
+}
+
+.order-entry-container .bill-total-summary {
+  margin-top: 0;
+  padding: 6px;
+  gap: 6px;
+}
+
+.order-entry-container .summary-buttons {
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.order-entry-summary > .summary-buttons {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px), (max-height: 620px) {
+  .order-entry-form > form {
+    overflow: visible;
+  }
+  .order-entry-container .table-wrapper {
+    flex: none;
+    height: clamp(180px, 40dvh, 480px);
+  }
+  .order-entry-summary .summary-content {
+    flex: none;
+    height: clamp(180px, 35dvh, 320px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .order-entry-container {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

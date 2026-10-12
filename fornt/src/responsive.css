@@ -1,0 +1,291 @@
+/* Shared viewport sizing. Page-specific entry tables keep their own flex layout. */
+.app-content > :is(.customer-add-page, .customer-list-page, .customer-details-page,
+  .acc-page, .price-page, .dashboard-page, .om-page) {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.app-content :is(fieldset, .customer-field, .customer-form-grid > *,
+  .customer-details-grid > *, .customer-filter > *, .acc-card, .price-card) {
+  min-width: 0;
+}
+
+/* Master-data forms, lists, details, and invoice settings. */
+.app-content :is(.customer-add-page, .customer-list-page, .customer-details-page) {
+  padding: clamp(6px, 1vw, 16px);
+}
+
+.app-content :is(.customer-add-card, .customer-list-card, .customer-details-card) {
+  width: 100%;
+  max-width: 1600px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: clamp(12px, 1.25vw, 24px);
+}
+
+.app-content .customer-list-page {
+  display: flex;
+}
+
+.app-content .customer-list-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.app-content .customer-list-card > :not(.customer-table-wrapper) {
+  flex-shrink: 0;
+}
+
+.app-content :is(.customer-list-header, .customer-add-heading) {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  gap: 12px;
+}
+
+.app-content .customer-form fieldset {
+  margin-bottom: 16px;
+}
+
+.app-content .customer-form legend {
+  margin-bottom: 8px;
+}
+
+.app-content .customer-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 12px;
+}
+
+.app-content .customer-field input {
+  padding: 8px 10px;
+}
+
+.app-content :is(.customer-form-actions, .details-actions, .form-actions,
+  .customer-actions, .modal-actions, .sale-bill-list-pagination) {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.app-content .customer-filter {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.app-content .customer-filter label {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.app-content .customer-filter :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.app-content .customer-table-wrapper {
+  min-width: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.app-content .customer-list-card > .customer-table-wrapper {
+  flex: 1 1 0;
+  min-height: 100px;
+}
+
+.app-content .customer-add-card > .customer-table-wrapper {
+  max-height: clamp(150px, 25dvh, 300px);
+}
+
+.app-content .customer-table :is(th, td) {
+  padding: 8px 10px;
+}
+
+.app-content :is(.customer-table, .acc-table, .price-table) th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Accounts and price-update tables share the available height with their filters. */
+.app-content :is(.acc-page, .price-page) {
+  display: flex;
+  flex-direction: column;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: clamp(6px, 1vw, 16px);
+  gap: 8px;
+}
+
+.app-content :is(.acc-card, .price-card) {
+  padding: clamp(10px, 1vw, 18px);
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.app-content .acc-card:has(> .acc-table-wrap) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 160px;
+  gap: 8px;
+}
+
+.app-content .acc-card > :not(.acc-table-wrap) {
+  flex-shrink: 0;
+}
+
+.app-content :is(.acc-table-wrap, .price-table-wrapper) {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 80px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.app-content .acc-table {
+  min-width: 560px;
+}
+
+.app-content .price-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(180px, 1fr);
+  flex: 1;
+  min-height: 0;
+  gap: 8px;
+}
+
+.app-content .price-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+}
+
+.app-content .price-card > :not(.price-table-wrapper) {
+  flex-shrink: 0;
+}
+
+.app-content .price-header {
+  margin-bottom: 8px;
+}
+
+.app-content .price-product-title {
+  margin: 10px 0 6px;
+}
+
+.app-content :is(.acc-form, .price-filters) {
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+  gap: 8px;
+}
+
+/* Dashboard cards and the explicit mobile order page also use larger monitors. */
+.app-content .dashboard-page {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: clamp(6px, 1vw, 16px);
+}
+
+.app-content :is(.dashboard-card, .dashboard-header, .rank-card) {
+  min-width: 0;
+}
+
+.app-content :is(.dashboard-header, .period-tabs, .backup-actions) {
+  flex-wrap: wrap;
+}
+
+.app-content .om-page {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  max-width: 1600px;
+  padding: 8px;
+}
+
+.app-content .om-form {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.app-content .om-summary {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-content .om-summary > :not(.om-order-list) {
+  flex-shrink: 0;
+}
+
+.app-content .om-order-list {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.app-content .om-card-billing > .om-product-list {
+  max-height: clamp(180px, 35dvh, 480px);
+  overflow: auto;
+}
+
+/* Dialogs must fit shorter windows, including their padding. */
+.app-content :is(.customer-modal, .acc-modal, .order-view-modal, .sale-view-modal, .om-modal) {
+  box-sizing: border-box;
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+}
+
+.app-content .customer-modal-backdrop {
+  z-index: 50;
+}
+
+@media (max-width: 1000px), (max-height: 620px) {
+  .app-content .customer-list-card > .customer-table-wrapper,
+  .app-content :is(.acc-table-wrap, .price-table-wrapper) {
+    flex: none;
+    max-height: 55dvh;
+  }
+  .app-content .price-stack {
+    grid-template-rows: auto;
+  }
+  .app-content .om-page {
+    grid-template-rows: auto;
+  }
+  .app-content .om-form {
+    overflow: visible;
+  }
+  .app-content .om-order-list {
+    flex: none;
+    max-height: 55dvh;
+  }
+}
+
+@media (max-width: 1000px) {
+  .app-content .price-stack {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .app-content .om-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .app-content .customer-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .app-content .customer-filter label {
+    flex-basis: auto;
+  }
+  .app-content :is(.status-grid, .rank-grid, .stats-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

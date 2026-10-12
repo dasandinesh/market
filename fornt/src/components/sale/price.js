@@ -102,9 +102,7 @@ const ByBillSection = () => {
     return (
         <section className="price-card">
             <header className="price-header">
-                <p className="price-eyebrow">By product</p>
-                <h1>Update price / quantity per bill</h1>
-                <p>Pick a product to list every bill that has it, with price and quantity editable per bill.</p>
+                <h3>Update price / quantity per bill</h3>
             </header>
 
             <form className="price-filters" onSubmit={submitFilter}>
@@ -245,9 +243,7 @@ const BulkPriceSection = () => {
     return (
         <section className="price-card">
             <header className="price-header">
-                <p className="price-eyebrow">Bulk price</p>
-                <h1>Update price across every bill</h1>
-                <p>List every product sold in the date range, one price per product — editing it updates that price in every bill in range that has it.</p>
+                <h3>Update price across every bill</h3>
             </header>
 
             <form className="price-filters" onSubmit={submitFilter}>

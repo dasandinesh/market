@@ -1,0 +1,50 @@
+.sale-bill-preview-empty {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  min-height: 140px;
+  margin: 0;
+  padding: 24px 16px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.sale-bill-preview-document {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 16px;
+  color: #19302a;
+  font-size: 13px;
+  scrollbar-width: thin;
+}
+
+.sale-bill-preview-shop { padding-bottom: 14px; border-bottom: 1px solid #dce8e4; text-align: center; }
+.sale-bill-preview-shop p { margin: 4px 0; color: #5e706a; font-size: 12px; overflow-wrap: anywhere; }
+.sale-bill-preview-shop .sale-bill-preview-shop-name { color: #19302a; font-size: 18px; font-weight: 700; }
+.sale-bill-preview-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
+.sale-bill-preview-meta dt { margin-bottom: 4px; color: #64748b; font-size: 12px; }
+.sale-bill-preview-meta dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.sale-bill-preview-party { grid-column: 1 / -1; }
+.sale-bill-preview-items-wrap { min-width: 0; overflow-x: auto; }
+.sale-bill-preview-items { width: 100%; min-width: 360px; border-collapse: collapse; }
+.sale-bill-preview-items caption { padding-bottom: 8px; color: #476159; font-size: 12px; font-weight: 600; text-align: left; }
+.sale-bill-preview-items th { background: #f0f7f4; color: #476159; font-size: 11px; font-weight: 700; }
+.sale-bill-preview-items :is(th, td) { padding: 8px 6px; border-bottom: 1px solid #e2ece8; text-align: right; }
+.sale-bill-preview-items :is(th, td):first-child { text-align: left; }
+.sale-bill-preview-items td:not(:first-child) { white-space: nowrap; }
+.sale-bill-preview-item-name { min-width: 85px; overflow-wrap: anywhere; }
+.sale-bill-preview-items .sale-bill-preview-no-items { padding: 16px 6px; color: #64748b; text-align: center; }
+.sale-bill-preview-quantities { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0 16px; color: #64748b; font-size: 12px; }
+.sale-bill-preview-quantities div { display: flex; gap: 6px; }
+.sale-bill-preview-quantities dd { margin: 0; color: #476159; font-weight: 600; }
+.sale-bill-preview-totals { margin: 0; }
+.sale-bill-preview-totals div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; }
+.sale-bill-preview-totals dd { margin: 0; white-space: nowrap; }
+.sale-bill-preview-totals .sale-bill-preview-total { margin: 5px 0; padding: 10px 0; border-top: 1px solid #dce8e4; border-bottom: 1px solid #dce8e4; color: #15593e; font-size: 15px; font-weight: 700; }
+.sale-bill-preview-totals .sale-bill-preview-closing { font-weight: 700; }
+.sale-bill-preview-note { margin: 16px 0 0; color: #64748b; font-size: 12px; text-align: center; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .sale-bill-preview-document { padding: 12px; } }
